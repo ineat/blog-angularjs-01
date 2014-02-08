@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <style>
+        .todo {
+            color: limegreen;
+            background-color:#eee;
+            list-style-type: none;
+        }
+        .todo.ng-enter {
+            color: black;
+            transition: 1s linear all;
+            opacity: 0;
+        }
+        .todo.ng-enter.ng-enter-active {
+            opacity: 1;
+        }
+        .todo.ng-move {
+            color: blue;
+            font-weight: bolder;
+            font-size: xx-large;
+            transition: 1s linear all;
+            opacity: 0;
+        }
+        .todo.ng-move.ng-move-active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>D comme databinding</h1>
+    <label>Name:
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+    </label>
+    <h2>Hello {{yourName}}!</h2>
+    <hr>
+</div>
+<div>
+    <h1>D comme Directive</h1>
+    <div my-directive/>
+</div>
+<div ng-controller="MyController">
+    <h1>Les nouveaut&eacutes de la 1.2</h1>
+    <form>
+        <input type="text" name="todo" ng-model="todo">
+        <button ng-click="add(todo)">Add</button>
+        <button ng-click="sort()">Sort</button>
+    </form>
+    <ul>
+        <li class="todo" ng-repeat="item in todolist" ng-swipe-left="item.show = true" ng-swipe-right="item.show = false">
+            <span ng-if="!item.show">{{ item.label}}</span>
+            <span ng-if="item.show"><button ng-click="del($index)">Delete element {{ item.label }}?</button></span>
+        </li>
+    </ul>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular-touch.min.js"></script>
+<script src="scripts/myapp.js"></script>
+</body>
+</html>
